@@ -1,0 +1,23 @@
+//
+//  opencvpch.pch
+//  OpenCVTest
+//
+//  Created by appled on 2017/11/22.
+//  Copyright © 2017年 appled. All rights reserved.
+//
+
+#ifndef opencvpch_h
+#define opencvpch_h
+
+#ifdef __cplusplus
+#import <opencv2/opencv.hpp>
+#import <opencv2/imgproc/types_c.h>
+#import <opencv2/imgcodecs/ios.h>
+#endif
+
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#endif
+
+#endif /* opencvpch_h */

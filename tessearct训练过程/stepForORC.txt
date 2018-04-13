@@ -1,0 +1,47 @@
+下载jTessBoxEditor-1.7.3(https://github.com/tesseract-ocr/tesseract/wiki/AddOns)   配置tesseract(https://sourceforge.net/projects/tesseract-ocr-alt/files/)环境
+
+
+
+1.合成tif & box(tesseract sll.normal.exp0.tif sll.normal.exp0 batch.nochop makebox)
+2.修改 box文件 - jTessBoxEditor-1.7.3
+3.生成font_properties文件(注意：文件不要任何后缀)
+
+4.创建.txt文件写入:
+
+rem 执行改批处理前先要目录下创建font_properties文件  
+
+echo Run Tesseract for Training..  
+tesseract.exe sll.normal.exp0.tif sll.normal.exp0 nobatch box.train  
+  
+echo Compute the Character Set..  
+unicharset_extractor.exe sll.normal.exp0.box  
+mftraining -F font_properties -U unicharset -O sll.unicharset sll.normal.exp0.tr  
+  
+echo Clustering..  
+cntraining.exe sll.normal.exp0.tr  
+  
+echo Rename Files..  
+rename normproto sll.normproto  
+rename inttemp sll.inttemp  
+rename pffmtable sll.pffmtable  
+rename shapetable sll.shapetable   
+  
+echo Create Tessdata..  
+combine_tessdata.exe sll.
+
+echo. & pause
+
+5.修改为bat后缀,运行bat文件 生成训练库
+
+
+例子:num文件夹中
+
+把库放入tesseract环境的字体库中，放入目标识别图片  当前文件夹打开命令行  输入tesseract ***.png [当前文件夹创建的输出文件(.txt)名称] -l [字体库名称]  结果正确则字体库生成成功
+
+
+
+
+
+
+
+http://www.jianshu.com/p/55d2d26fa2ff
